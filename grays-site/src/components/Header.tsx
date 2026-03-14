@@ -40,7 +40,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-50"
+                className="px-4 py-2.5 text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-50"
               >
                 {link.label}
               </a>
