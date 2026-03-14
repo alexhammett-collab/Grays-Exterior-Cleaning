@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-950 via-slate-900 to-brand-950 relative overflow-hidden">
+    <section className="py-14 lg:py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-brand-950 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.12),_transparent_70%)]" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

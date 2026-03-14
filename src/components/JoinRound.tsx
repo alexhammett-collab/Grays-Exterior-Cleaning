@@ -42,7 +42,7 @@ const rounds = [
 
 export default function JoinRound() {
   return (
-    <section id="round" className="py-20 lg:py-28 bg-gradient-to-b from-slate-50 to-white">
+    <section id="round" className="py-14 lg:py-20 bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left content */}

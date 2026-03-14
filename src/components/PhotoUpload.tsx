@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function PhotoUpload() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 p-8 sm:p-12 lg:p-16">
           {/* Decorative elements */}
