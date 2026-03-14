@@ -79,10 +79,7 @@ export default function Hero() {
             </a>
             <a
               href="#round"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-12 px-6 text-base border-white/30 text-white hover:bg-white/15 hover:text-white no-underline backdrop-blur-sm"
-              )}
+              className="inline-flex items-center justify-center h-12 px-6 text-base font-medium rounded-lg border border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm transition-all no-underline"
             >
               Join our round
             </a>
