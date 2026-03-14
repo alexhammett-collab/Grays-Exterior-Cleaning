@@ -2,13 +2,15 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ComparisonSliderProps {
   title: string;
-  index: number;
+  beforeImage: string;
+  afterImage: string;
 }
 
-function ComparisonSlider({ title, index }: ComparisonSliderProps) {
+function ComparisonSlider({ title, beforeImage, afterImage }: ComparisonSliderProps) {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -38,18 +40,10 @@ function ComparisonSlider({ title, index }: ComparisonSliderProps) {
     handleMove(e.touches[0].clientX);
   };
 
-  const colors = [
-    { before: "from-amber-800 to-amber-900", after: "from-brand-500 to-brand-600" },
-    { before: "from-stone-700 to-stone-800", after: "from-emerald-500 to-emerald-600" },
-    { before: "from-zinc-700 to-zinc-800", after: "from-sky-500 to-sky-600" },
-  ];
-
-  const color = colors[index % colors.length];
-
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-col-resize select-none"
+      className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-col-resize select-none shadow-lg"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
@@ -57,51 +51,71 @@ function ComparisonSlider({ title, index }: ComparisonSliderProps) {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleMouseUp}
     >
-      {/* "Before" side */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${color.before} flex items-center justify-center`}>
-        <div className="text-center px-8">
-          <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3">
-            <span className="text-3xl">🏚️</span>
-          </div>
-          <span className="text-white/60 text-sm font-medium uppercase tracking-wider">Before</span>
-          <p className="text-white/40 text-xs mt-1">Dirt, grime & algae build-up</p>
-        </div>
+      {/* "Before" image (full background) */}
+      <div className="absolute inset-0">
+        <Image
+          src={beforeImage}
+          alt="Before cleaning"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-amber-900/20" />
       </div>
 
-      {/* "After" side */}
+      {/* "After" image (clipped) */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${color.after} flex items-center justify-center`}
+        className="absolute inset-0"
         style={{ clipPath: `inset(0 0 0 ${position}%)` }}
       >
-        <div className="text-center px-8">
-          <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-3">
-            <span className="text-3xl">✨</span>
-          </div>
-          <span className="text-white/90 text-sm font-medium uppercase tracking-wider">After</span>
-          <p className="text-white/70 text-xs mt-1">Professionally cleaned & restored</p>
-        </div>
+        <Image
+          src={afterImage}
+          alt="After cleaning"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-sky-500/5" />
+      </div>
+
+      {/* Before/After labels */}
+      <div className="absolute top-4 left-4 z-10">
+        <span className="px-2.5 py-1 rounded-full bg-red-500/80 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-wider shadow-lg">
+          Before
+        </span>
+      </div>
+      <div className="absolute top-4 right-4 z-10">
+        <span className="px-2.5 py-1 rounded-full bg-emerald-500/80 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-wider shadow-lg">
+          After
+        </span>
       </div>
 
       {/* Slider handle */}
       <div
-        className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
+        className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-lg z-10"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-2xl flex items-center justify-center border-2 border-slate-200">
           <svg
-            className="w-5 h-5 text-slate-700"
+            className="w-5 h-5 text-slate-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+          </svg>
+          <svg
+            className="w-5 h-5 text-slate-600 -ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </div>
 
       {/* Title */}
       <div className="absolute bottom-4 left-4 right-4 z-10">
-        <span className="inline-block px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-xs font-medium">
+        <span className="inline-block px-3 py-1.5 rounded-lg bg-black/50 backdrop-blur-sm text-white text-xs font-semibold">
           {title}
         </span>
       </div>
@@ -111,13 +125,31 @@ function ComparisonSlider({ title, index }: ComparisonSliderProps) {
 
 export default function BeforeAfter() {
   const examples = [
-    { title: "Window Cleaning – Semi-detached" },
-    { title: "Conservatory Roof – Full Clean" },
-    { title: "Gutter & Fascia Restoration" },
+    {
+      title: "Window Cleaning – Semi-detached",
+      beforeImage:
+        "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80&auto=format&fit=crop",
+      afterImage:
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop",
+    },
+    {
+      title: "Conservatory Roof – Full Clean",
+      beforeImage:
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=600&q=80&auto=format&fit=crop",
+      afterImage:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop",
+    },
+    {
+      title: "Gutter & Fascia Restoration",
+      beforeImage:
+        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&q=80&auto=format&fit=crop",
+      afterImage:
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format&fit=crop",
+    },
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -146,7 +178,11 @@ export default function BeforeAfter() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <ComparisonSlider title={example.title} index={i} />
+              <ComparisonSlider
+                title={example.title}
+                beforeImage={example.beforeImage}
+                afterImage={example.afterImage}
+              />
             </motion.div>
           ))}
         </div>

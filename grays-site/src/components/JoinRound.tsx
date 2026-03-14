@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 const rounds = [
   {
@@ -11,32 +11,32 @@ const rounds = [
     day: "Tuesday",
     slots: 3,
     nextDate: "Next visit: 18 Mar",
-    color: "border-brand-200 bg-brand-50/50",
-    dotColor: "bg-brand-500",
+    image:
+      "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&q=80&auto=format&fit=crop",
   },
   {
     area: "Barrow upon Soar",
     day: "Wednesday",
     slots: 5,
     nextDate: "Next visit: 19 Mar",
-    color: "border-emerald-200 bg-emerald-50/50",
-    dotColor: "bg-emerald-500",
+    image:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80&auto=format&fit=crop",
   },
   {
     area: "Quorn",
     day: "Thursday",
     slots: 2,
     nextDate: "Next visit: 20 Mar",
-    color: "border-violet-200 bg-violet-50/50",
-    dotColor: "bg-violet-500",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80&auto=format&fit=crop",
   },
   {
     area: "Mountsorrel",
     day: "Friday",
     slots: 7,
     nextDate: "Next visit: 21 Mar",
-    color: "border-amber-200 bg-amber-50/50",
-    dotColor: "bg-amber-500",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80&auto=format&fit=crop",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function JoinRound() {
           </motion.div>
 
           {/* Right cards */}
-          <div className="mt-10 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="mt-10 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {rounds.map((round, i) => (
               <motion.div
                 key={round.area}
@@ -96,34 +96,45 @@ export default function JoinRound() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className={cn(
-                  "p-5 rounded-2xl border transition-all hover:shadow-md",
-                  round.color
-                )}
+                className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300"
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <div className={cn("w-2.5 h-2.5 rounded-full", round.dotColor)} />
-                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                    {round.day}
-                  </span>
+                {/* Card image */}
+                <div className="relative h-32 overflow-hidden">
+                  <Image
+                    src={round.image}
+                    alt={`Houses in ${round.area}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-bold text-slate-700 shadow-sm">
+                      <span className={cn(
+                        "w-2 h-2 rounded-full",
+                        round.slots <= 3 ? "bg-amber-500" : "bg-emerald-500"
+                      )} />
+                      {round.day}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  {round.area}
-                </h3>
-                <p className="text-xs text-slate-500 mt-1">{round.nextDate}</p>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  {round.slots} slots available
-                </p>
-                <a
-                  href="#quote"
-                  className={cn(
-                    buttonVariants({ size: "sm" }),
-                    "mt-3 w-full bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 no-underline text-xs"
-                  )}
-                >
-                  Join this round
-                  <ArrowRight className="w-3 h-3 ml-1" />
-                </a>
+
+                {/* Card body */}
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-slate-900">
+                    {round.area}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">{round.nextDate}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    {round.slots} slots available
+                  </p>
+                  <a
+                    href="#quote"
+                    className="mt-3 flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors no-underline"
+                  >
+                    Join this round
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>
