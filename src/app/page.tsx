@@ -12,6 +12,9 @@ import PhotoUpload from "@/components/PhotoUpload";
 import FinalCTA from "@/components/FinalCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import Footer from "@/components/Footer";
+import StreetClean from "@/components/features/StreetClean";
+import NearbyActivity from "@/components/features/NearbyActivity";
+import SmartPropertyQuote from "@/components/features/SmartPropertyQuote";
 
 export default function Home() {
   return (
@@ -24,6 +27,9 @@ export default function Home() {
         <InstantQuote />
         <BeforeAfter />
         <JoinRound />
+        <StreetClean />
+        <NearbyActivity />
+        <SmartPropertyQuote />
         <Reviews />
         <CleaningPlans />
         <CustomerExperience />
