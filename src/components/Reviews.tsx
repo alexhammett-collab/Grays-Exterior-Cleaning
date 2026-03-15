@@ -11,7 +11,7 @@ const reviews = [
     text: "Absolutely brilliant service. Windows are sparkling and the team were so professional. Been using Gray's for over two years now and wouldn't go anywhere else.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1621983209671-071f085f3353?w=600&q=80&auto=format&fit=crop",
   },
   {
     name: "Mark & Helen D.",
@@ -19,7 +19,7 @@ const reviews = [
     text: "Really impressed with how easy the whole process is. They just turn up on schedule, do a fantastic job, and we barely even notice. Exactly what you want.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1710883727434-01c65fc14c76?w=600&q=80&auto=format&fit=crop",
   },
   {
     name: "James P.",
@@ -27,7 +27,7 @@ const reviews = [
     text: "Had the gutters cleared and all windows done. Incredible difference. Very fair pricing and the communication throughout was excellent.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1621983209359-456e234c892a?w=600&q=80&auto=format&fit=crop",
   },
   {
     name: "Linda W.",
@@ -35,7 +35,7 @@ const reviews = [
     text: "The conservatory roof looks like new! I'd been putting it off for ages. Gray's made it so simple and the result is amazing. Highly recommend.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1604166168285-173fa2afad18?w=600&q=80&auto=format&fit=crop",
   },
 ];
 

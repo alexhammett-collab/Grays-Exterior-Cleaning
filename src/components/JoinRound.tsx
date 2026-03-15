@@ -143,7 +143,7 @@ export default function JoinRound() {
               </div>
             </motion.div>
 
-            {/* Right: Google Maps style mock */}
+            {/* Right: Real map embed */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,50 +151,18 @@ export default function JoinRound() {
               transition={{ delay: 0.15 }}
               className="mt-10 lg:mt-0 lg:sticky lg:top-24"
             >
-              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-[#e8e4d8] aspect-[4/3]">
-                {/* Map tiles mock - styled roads and terrain */}
-                <svg viewBox="0 0 400 300" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  {/* Background terrain */}
-                  <rect width="400" height="300" fill="#e8e4d8" />
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg aspect-[4/3]">
+                <iframe
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-1.2800%2C52.7050%2C-1.1000%2C52.7900&amp;layer=mapnik"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  title="Gray's Exterior Cleaning service area – Leicestershire"
+                />
 
-                  {/* Green areas (parks/fields) */}
-                  <ellipse cx="80" cy="60" rx="50" ry="35" fill="#c5deb5" opacity="0.7" />
-                  <ellipse cx="320" cy="240" rx="60" ry="40" fill="#c5deb5" opacity="0.6" />
-                  <ellipse cx="200" cy="280" rx="80" ry="30" fill="#c5deb5" opacity="0.5" />
-                  <ellipse cx="350" cy="80" rx="40" ry="30" fill="#c5deb5" opacity="0.7" />
-                  <rect x="0" y="0" width="45" height="120" fill="#c5deb5" opacity="0.5" rx="10" />
-
-                  {/* Water - River Soar */}
-                  <path d="M 260 0 Q 250 50 270 100 Q 285 150 260 200 Q 240 250 255 300" fill="none" stroke="#a8d4e6" strokeWidth="8" opacity="0.8" />
-                  <path d="M 260 0 Q 250 50 270 100 Q 285 150 260 200 Q 240 250 255 300" fill="none" stroke="#90c8e0" strokeWidth="4" opacity="0.6" />
-
-                  {/* Major roads */}
-                  <path d="M 0 140 L 400 140" stroke="#fcd577" strokeWidth="5" opacity="0.8" />
-                  <path d="M 180 0 L 180 300" stroke="#fcd577" strokeWidth="4" opacity="0.7" />
-                  <path d="M 100 0 Q 140 80 180 140" stroke="#ffffff" strokeWidth="3" opacity="0.9" />
-                  <path d="M 180 140 Q 220 180 300 200" stroke="#ffffff" strokeWidth="3" opacity="0.9" />
-                  <path d="M 0 80 Q 100 90 180 100 Q 250 110 400 100" stroke="#ffffff" strokeWidth="2.5" opacity="0.8" />
-                  <path d="M 100 200 Q 150 180 180 140" stroke="#ffffff" strokeWidth="2" opacity="0.7" />
-                  <path d="M 180 140 L 240 60" stroke="#ffffff" strokeWidth="2" opacity="0.7" />
-
-                  {/* Minor roads grid */}
-                  <path d="M 130 60 L 230 60" stroke="#ffffff" strokeWidth="1.5" opacity="0.5" />
-                  <path d="M 120 180 L 240 180" stroke="#ffffff" strokeWidth="1.5" opacity="0.5" />
-                  <path d="M 140 0 L 140 120" stroke="#ffffff" strokeWidth="1.5" opacity="0.5" />
-                  <path d="M 220 100 L 220 200" stroke="#ffffff" strokeWidth="1.5" opacity="0.5" />
-
-                  {/* Built-up areas (light grey blocks) */}
-                  <rect x="140" y="100" width="80" height="80" fill="#d4d0c8" opacity="0.5" rx="4" />
-                  <rect x="150" y="50" width="40" height="30" fill="#d4d0c8" opacity="0.4" rx="3" />
-                  <rect x="230" y="150" width="50" height="40" fill="#d4d0c8" opacity="0.4" rx="3" />
-                  <rect x="190" y="200" width="35" height="25" fill="#d4d0c8" opacity="0.4" rx="3" />
-                </svg>
-
-                {/* Map pins for each area */}
+                {/* Overlay pins positioned on top of the iframe */}
                 {rounds.map((round) => {
-                  // Map lat/lng to pixel positions within the SVG
-                  const x = ((round.lng - (-1.25)) / 0.15) * 400;
-                  const y = ((52.79 - round.lat) / 0.09) * 300;
+                  const x = ((round.lng - (-1.28)) / ((-1.10) - (-1.28))) * 100;
+                  const y = ((52.79 - round.lat) / (52.79 - 52.705)) * 100;
                   const isHovered = hoveredArea === round.area;
 
                   return (
@@ -203,34 +171,33 @@ export default function JoinRound() {
                       onClick={() => openQuote(round.area)}
                       onMouseEnter={() => setHoveredArea(round.area)}
                       onMouseLeave={() => setHoveredArea(null)}
-                      className="absolute group"
+                      className="absolute z-10"
                       style={{
-                        left: `${(x / 400) * 100}%`,
-                        top: `${(y / 300) * 100}%`,
+                        left: `${x}%`,
+                        top: `${y}%`,
                         transform: "translate(-50%, -100%)",
                       }}
                     >
-                      {/* Pin */}
                       <div className={cn(
-                        "relative flex items-center justify-center transition-all duration-200",
+                        "relative transition-all duration-200",
                         isHovered ? "scale-125" : "scale-100"
                       )}>
                         <div className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center shadow-lg border-2 border-white",
+                          "w-9 h-9 rounded-full flex items-center justify-center shadow-lg border-2 border-white",
                           round.slots <= 3 ? "bg-amber-500" : "bg-brand-500"
                         )}>
                           <MapPin className="w-4 h-4 text-white" />
                         </div>
                         <div className={cn(
-                          "absolute -bottom-1 w-2 h-2 rotate-45 border-b-2 border-r-2 border-white",
+                          "absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 rotate-45 border-b-2 border-r-2 border-white",
                           round.slots <= 3 ? "bg-amber-500" : "bg-brand-500"
                         )} />
                       </div>
 
                       {/* Tooltip */}
                       <div className={cn(
-                        "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap transition-all duration-200",
-                        isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 pointer-events-none"
+                        "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap transition-all duration-200 pointer-events-none",
+                        isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
                       )}>
                         <div className="bg-white rounded-lg shadow-xl border border-slate-200 px-3 py-2 text-left">
                           <p className="text-xs font-bold text-slate-900">{round.area}</p>
@@ -240,22 +207,6 @@ export default function JoinRound() {
                     </button>
                   );
                 })}
-
-                {/* Google Maps-style controls */}
-                <div className="absolute top-3 right-3 flex flex-col gap-1">
-                  <div className="w-8 h-8 bg-white rounded shadow-md flex items-center justify-center text-slate-600 text-sm font-bold">+</div>
-                  <div className="w-8 h-8 bg-white rounded shadow-md flex items-center justify-center text-slate-600 text-sm font-bold">−</div>
-                </div>
-
-                {/* Map attribution */}
-                <div className="absolute bottom-2 left-2 text-[9px] text-slate-500/80 bg-white/70 px-1.5 py-0.5 rounded">
-                  Leicestershire, UK
-                </div>
-
-                {/* Google Maps-style branding */}
-                <div className="absolute bottom-2 right-2 text-[9px] text-slate-500/60 bg-white/70 px-1.5 py-0.5 rounded">
-                  Map data ©2026
-                </div>
               </div>
             </motion.div>
           </div>

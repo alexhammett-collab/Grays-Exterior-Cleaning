@@ -11,7 +11,7 @@ export default function Hero() {
     <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-16">
       {/* Background Image */}
       <Image
-        src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1920&q=80&auto=format&fit=crop"
+        src="https://images.unsplash.com/photo-1621983209348-7b5a63f23866?w=1920&q=80&auto=format&fit=crop"
         alt="Beautiful clean home exterior"
         fill
         className="object-cover"
