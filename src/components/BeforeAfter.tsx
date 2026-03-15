@@ -128,23 +128,23 @@ export default function BeforeAfter() {
     {
       title: "Window Cleaning – Semi-detached",
       beforeImage:
-        "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=800&q=80&auto=format&fit=crop",
       afterImage:
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80&auto=format&fit=crop",
     },
     {
       title: "Conservatory Roof – Full Clean",
       beforeImage:
-        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800&q=80&auto=format&fit=crop",
       afterImage:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80&auto=format&fit=crop",
     },
     {
       title: "Gutter & Fascia Restoration",
       beforeImage:
-        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format&fit=crop",
       afterImage:
-        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&q=80&auto=format&fit=crop",
     },
   ];
 

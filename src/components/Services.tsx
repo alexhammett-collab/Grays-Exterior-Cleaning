@@ -10,35 +10,35 @@ const services = [
     description:
       "Crystal-clear windows using pure water technology. Regular or one-off cleans for residential properties.",
     image:
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80&auto=format&fit=crop",
   },
   {
     title: "Gutter Clearing",
     description:
       "Full gutter clearing and flush to prevent blockages, leaks, and water damage to your property.",
     image:
-      "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800&q=80&auto=format&fit=crop",
   },
   {
     title: "Soffits & Fascias",
     description:
       "Deep clean of all soffits, fascias and cladding. Restores your roofline to a bright, fresh finish.",
     image:
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80&auto=format&fit=crop",
   },
   {
     title: "Solar Panel Cleaning",
     description:
       "Improve energy output with professional solar panel cleaning. Safe, streak-free results every time.",
     image:
-      "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format&fit=crop",
   },
   {
     title: "Conservatory Roofs",
     description:
       "Transform your conservatory with a full roof clean. Removes algae, moss and built-up grime.",
     image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&q=80&auto=format&fit=crop",
   },
 ];
 
